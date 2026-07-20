@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Color Picker - DailyTools Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .color-display-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--glass-border);
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 25px;
+            align-items: center;
+        }
+        .picker-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 12px;
+            border: 1px dashed var(--glass-border);
+        }
+        .color-preview-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .color-preview-circle input[type="color"] {
+            position: absolute;
+            top: -10px; left: -10px; width: 140px; height: 140px;
+            opacity: 0; cursor: pointer;
+        }
+        .code-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.03);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 10px;
+        }
+        .code-row strong { font-family: 'Courier New', monospace; font-size: 1.05rem; }
+        .copy-badge-btn {
+            background: var(--accent-color);
+            color: white !important;
+            border: none; padding: 6px 12px;
+            border-radius: 6px; cursor: pointer; font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar glass-card">
+        <a href="../index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+    </nav>
+
+    <div class="tool-container" style="max-width: 750px;">
+        <a href="../index.html" class="btn" style="background: rgba(0,0,0,0.05); color: var(--text-main) !important; border: 1px solid var(--glass-border); margin-bottom: 20px; padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div style="margin-bottom: 25px;">
+            <h2>Premium Color Picker</h2>
+            <p class="text-muted">Tap the giant color wheel to pick/eye-drop any shade, then copy standard code formats instantly.</p>
+        </div>
+
+        <div class="color-display-card">
+            <!-- Left Side: Interactive Trigger Area -->
+            <div class="picker-wrapper">
+                <div class="color-preview-circle" id="circleVisual" style="background-color: #3b82f6;">
+                    <input type="color" id="colorInput" value="#3b82f6">
+                </div>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);"><i class="fas fa-eye-dropper"></i> Click Circle to Change</span>
+            </div>
+
+            <!-- Right Side: Live Code Formats -->
+            <div style="display: flex; flex-direction: column;">
+                <div class="code-row">
+                    <div><span style="font-size: 0.75rem; color: var(--text-muted); display: block;">HEX Code</span><strong id="hexVal">#3b82f6</strong></div>
+                    <button class="copy-badge-btn" onclick="copyColorString('hexVal')"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <div class="code-row">
+                    <div><span style="font-size: 0.75rem; color: var(--text-muted); display: block;">RGB Code</span><strong id="rgbVal">rgb(59, 130, 246)</strong></div>
+                    <button class="copy-badge-btn" onclick="copyColorString('rgbVal')"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <div class="code-row">
+                    <div><span style="font-size: 0.75rem; color: var(--text-muted); display: block;">HSL Code</span><strong id="hslVal">hsl(217, 91%, 60%)</strong></div>
+                    <button class="copy-badge-btn" onclick="copyColorString('hslVal')"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/toast.js"></script>
+    <script>
+        const colorInput = document.getElementById('colorInput');
+        const circleVisual = document.getElementById('circleVisual');
+        
+        colorInput.addEventListener('input', (e) => {
+            const hex = e.target.value;
+            circleVisual.style.backgroundColor = hex;
+            document.getElementById('hexVal').innerText = hex;
+            
+            // Convert to RGB
+            let r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+            document.getElementById('rgbVal').innerText = `rgb(${r}, ${g}, ${b})`;
+            
+            // Convert to HSL
+            r /= 255; g /= 255; b /= 255;
+            let max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if(max == min){ h = s = 0; } else {
+                let d = max - min; s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch(max){ case r: h = (g - b) / d + (g < b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; case b: h = (r - g) / d + 4; break; }
+                h /= 6;
+            }
+            document.getElementById('hslVal').innerText = `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+        });
+
+        function copyColorString(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            if(window.showToast) window.showToast(`Copied: ${text}`);
+        }
+    </script>
+</body>
+</html>

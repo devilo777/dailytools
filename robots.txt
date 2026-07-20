@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /assets/icons/
+Disallow: /js/tools/
+
+Sitemap: https://dailytoolshub.vercel.app/sitemap.xml

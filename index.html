@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyTools Hub - 10 Essential Web Tools</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar glass-card animate-fade-up">
+        <a href="index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Live Search -->
+    <div class="tool-container text-center animate-fade-up" style="text-align: center; margin-bottom: 20px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Everything you need in one place.</h1>
+        <p class="text-muted" style="margin-bottom: 30px;">Free, fast, and secure mobile-first browser utilities.</p>
+        
+        <!-- Live Search Input -->
+        <div style="position: relative; max-width: 500px; margin: 0 auto;">
+            <input type="text" id="globalSearch" class="glass-card" placeholder="Search 10 premium tools (e.g., pdf, word, qr)..." style="width: 100%; padding: 15px 20px; font-size: 1rem; border: 1px solid var(--glass-border); color: var(--text-main); background: var(--glass-bg); outline: none; border-radius: 30px;">
+            <div id="searchSuggestions" class="glass-card" style="position: absolute; display:none; width:100%; z-index:99; margin-top: 5px; text-align: left; border-radius: 15px; overflow: hidden;"></div>
+        </div>
+    </div>
+
+    <!-- Tools Grid Container -->
+    <div class="tool-container animate-fade-up" style="margin-top: 10px;">
+        <h3 style="margin-bottom: 20px;"><i class="fas fa-th-large"></i> Popular Tools</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;">
+            <!-- Card 1 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-file-pdf fa-2x" style="color: #EF4444; margin-bottom: 15px;"></i>
+                    <h4>PDF to Image</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Extract pages from PDF files into JPEG/PNG images.</p>
+                </div>
+                <a href="tools/pdf-to-image.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-file-image fa-2x" style="color: #3B82F6; margin-bottom: 15px;"></i>
+                    <h4>Image Compressor</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Reduce photo size smoothly without losing resolution.</p>
+                </div>
+                <a href="tools/image-compressor.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-qrcode fa-2x" style="color: var(--text-main); margin-bottom: 15px;"></i>
+                    <h4>QR Generator</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Generate instant custom QR codes for URLs or Text.</p>
+                </div>
+                <a href="tools/qr-generator.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-key fa-2x" style="color: #F59E0B; margin-bottom: 15px;"></i>
+                    <h4>Password Generator</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Create ultra-secure, customizable random passwords.</p>
+                </div>
+                <a href="tools/password-generator.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-font fa-2x" style="color: #10B981; margin-bottom: 15px;"></i>
+                    <h4>Word Counter</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Count words, characters, and read time instantly.</p>
+                </div>
+                <a href="tools/word-counter.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-eye-dropper fa-2x" style="color: #8B5CF6; margin-bottom: 15px;"></i>
+                    <h4>Color Picker</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Pick colors and get HEX, RGB, and HSL formats.</p>
+                </div>
+                <a href="tools/color-picker.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-hourglass-half fa-2x" style="color: #EC4899; margin-bottom: 15px;"></i>
+                    <h4>Age Calculator</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Calculate accurate age metrics down to exact days.</p>
+                </div>
+                <a href="tools/age-calculator.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-calculator fa-2x" style="color: #06B6D4; margin-bottom: 15px;"></i>
+                    <h4>Percentage Calc</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Compute percentage variations, tips, and formulas.</p>
+                </div>
+                <a href="tools/percentage-calculator.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-exchange-alt fa-2x" style="color: #6366F1; margin-bottom: 15px;"></i>
+                    <h4>Unit Converter</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Convert metrics across Length, Weight, and more.</p>
+                </div>
+                <a href="tools/unit-converter.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="glass-card" style="padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <i class="fas fa-compress-arrows-alt fa-2x" style="color: #F43F5E; margin-bottom: 15px;"></i>
+                    <h4>Image Resizer</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin: 10px 0;">Change the pixel width and height dimensions safely.</p>
+                </div>
+                <a href="tools/image-resizer.html" class="btn" style="margin-top: 15px; width: 100%; justify-content: center;">Open Tool</a>
+            </div>
+        </div>
+    </div>
+    <!-- ================= PREMIUM FOOTER START ================= -->
+    <footer class="glass-card" style="margin-top: 50px; padding: 30px 20px; border-top: 2px solid var(--glass-border); border-radius: 16px 16px 0 0;">
+        
+        <!-- Buy Me A Coffee / Support System Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; margin-bottom: 30px; border-bottom: 1px dashed var(--glass-border); padding-bottom: 25px;" class="tool-grid-preview">
+            <div>
+                <h3 style="color: var(--accent-color); margin-bottom: 8px;"><i class="fas fa-coffee"></i> Buy Me a Coffee!</h3>
+                <p class="text-muted" style="font-size: 0.9rem; line-height: 1.5;">Agar aapko ye web tools achhe lage aur isne aapka kaam aasan kiya, toh aap mujhe ek choti si coffee support bhej sakte hain taaki main aise aur bhi tools live lata rahoon!</p>
+            </div>
+            
+            <!-- Easy Pay Container -->
+            <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                <!-- 💡 APNA QR CODE LINK YAHA PASTE KAREIN -->
+                <!-- Aap "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=YOUR_UPI_ID" use kar sakte ho -->
+                <div style="padding: 8px; background: white; border-radius: 8px; border: 1px solid var(--glass-border); display: inline-block;">
+                    <!-- App ka personal QR Code Image block jise aap jab chahein badal sakte hain -->
+<img src="../images/my-qr.png" alt="Support QR Code" style="width: 120px; height: 120px; display: block; object-fit: contain; border-radius: 4px;">
+
+                </div>
+                <span style="font-family: monospace; font-size: 0.85rem; font-weight: bold; color: var(--text-main);">UPI ID: mirzatanzeem@fam </span>
+            </div>
+        </div>
+
+        <!-- Links and Copyright Footer Section -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <div>
+                <strong style="font-size: 1.1rem; color: var(--text-main);"><i class="fas fa-cubes"></i> DailyTools Hub</strong>
+                <p class="text-muted" style="font-size: 0.8rem; margin-top: 5px;">&copy; 2026 All rights reserved. Built for lightning-fast utilities.</p>
+            </div>
+
+            <!-- Core Legal Links Layout Navigation Row -->
+            <div style="display: flex; gap: 20px;" class="footer-nav-links">
+                <a href="#" onclick="showFooterModal('AboutUs')" style="font-size: 0.9rem; font-weight: 500; color: var(--text-main); text-decoration: none;"><i class="fas fa-info-circle"></i> About Us</a>
+                <a href="#" onclick="showFooterModal('ContactUs')" style="font-size: 0.9rem; font-weight: 500; color: var(--text-main); text-decoration: none;"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#" onclick="showFooterModal('PrivacyPolicy')" style="font-size: 0.9rem; font-weight: 500; color: var(--text-main); text-decoration: none;"><i class="fas fa-shield-alt"></i> Privacy</a>
+                <a href="#" onclick="showFooterModal('Terms')" style="font-size: 0.9rem; font-weight: 500; color: var(--text-main); text-decoration: none;"><i class="fas fa-file-contract"></i> Terms</a>
+            </div>
+        </div>
+    </footer>
+    <!-- ================= PREMIUM FOOTER END ================= -->
+
+    <!-- Dynamic Overlay Popup Modal Engine (Saves creating extra .html files) -->
+    <div id="footerModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center; padding: 20px;">
+        <div class="glass-card" style="background: var(--body-bg); max-width: 550px; width: 100%; padding: 25px; border: 2px solid var(--glass-border); position: relative; border-radius: 12px; max-height: 80vh; overflow-y: auto;">
+            <button onclick="closeFooterModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-main);"><i class="fas fa-times"></i></button>
+            <h3 id="modalTitle" style="color: var(--accent-color); margin-bottom: 15px;">---</h3>
+            <div id="modalBody" style="line-height: 1.6; font-size: 0.95rem; color: var(--text-main);">---</div>
+        </div>
+    </div>
+
+    <!-- Footer Dynamic Modal System Logic -->
+    <script>
+        const modalContent = {
+            AboutUs: {
+                title: "About DailyTools Hub",
+                body: "DailyTools Hub ek intelligent, lightweight aur open-source platform hai jo aapki daily workflows ko aasan banata hai. Humare saare tools client-side run hote hain, matlab aapka data 100% secure hai aur kisi server par upload nahi hota."
+            },
+            ContactUs: {
+                title: "Contact Support Desk",
+                body: "Agar aapko koi bug mila hai ya aap kisi naye tool ka suggestion dena chahte hain, toh aap hume directly email kar sakte hain:<br><br><strong>📧 support@dailytoolshub.com</strong><br><br>Hum aam taur par 24 ghante ke andar reply karte hain."
+            },
+            PrivacyPolicy: {
+                title: "Privacy Policy",
+                body: "Aapki privacy humari sabse pehli priority hai. DailyTools Hub par process hone wali koi bhi file, image, text ya calculations hamare database me store nahi hote. Sab kuch aapke local browser storage aur RAM ke andar process hota hai."
+            },
+            Terms: {
+                title: "Terms & Conditions",
+                body: "DailyTools Hub par maujood sabhi tools ka use karne ke liye aap poori tarah swatantra hain. In tools ko normal use karne me lagne wali kisi bhi anjaane software dependency ya glitch ke liye platform responsible nahi hoga. Safe tools use karein!"
+            }
+        };
+
+        function showFooterModal(type) {
+            document.getElementById('modalTitle').innerText = modalContent[type].title;
+            document.getElementById('modalBody').innerHTML = modalContent[type].body;
+            document.getElementById('footerModal').style.display = 'flex';
+        }
+
+        function closeFooterModal() {
+            document.getElementById('footerModal').style.display = 'none';
+        }
+
+        // Close on backdrop click validation
+        window.onclick = function(event) {
+            const modal = document.getElementById('footerModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+</html>

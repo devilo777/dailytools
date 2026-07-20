@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Unit Converter - DailyTools Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar glass-card">
+        <a href="../index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+    </nav>
+
+    <div class="tool-container" style="max-width: 700px;">
+        <a href="../index.html" class="btn" style="background: rgba(0,0,0,0.05); color: var(--text-main) !important; border: 1px solid var(--glass-border); margin-bottom: 20px; padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div style="margin-bottom: 25px;">
+            <h2>Easy Unit Converter</h2>
+            <p class="text-muted">Select a category, type the value, and see results side-by-side smoothly.</p>
+        </div>
+
+        <div class="glass-card" style="padding: 25px; border: 2px solid var(--glass-border);">
+            <!-- Interactive Category Tabs -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button class="btn cat-btn" id="cat-length" style="flex:1; justify-content:center; background: var(--accent-color);">Length</button>
+                <button class="btn cat-btn" id="cat-weight" style="flex:1; justify-content:center; background: rgba(0,0,0,0.05); color:var(--text-main) !important;">Weight</button>
+            </div>
+
+            <!-- Clear Side-by-Side Conversion Matrix -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="control-group">
+                    <label>From</label>
+                    <input type="number" id="valFrom" value="1" style="padding: 10px;">
+                    <select id="typeFrom" style="margin-top: 10px; padding: 8px;"></select>
+                </div>
+                <div class="control-group">
+                    <label>To (Result)</label>
+                    <input type="number" id="valTo" readonly style="background: rgba(0,0,0,0.02); font-weight: bold; color: var(--accent-color); padding: 10px;">
+                    <select id="typeTo" style="margin-top: 10px; padding: 8px;"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script>
+        const units = {
+            length: { Meters: 1, Kilometers: 0.001, Centimeters: 100, Inches: 39.3701 },
+            weight: { Kilograms: 1, Grams: 1000, Pounds: 2.20462, Ounces: 35.274 }
+        };
+
+        let currentCat = 'length';
+        const typeFrom = document.getElementById('typeFrom');
+        const typeTo = document.getElementById('typeTo');
+        const valFrom = document.getElementById('valFrom');
+        const valTo = document.getElementById('valTo');
+
+        function populateUnits() {
+            typeFrom.innerHTML = ''; typeTo.innerHTML = '';
+            Object.keys(units[currentCat]).forEach((unit, i) => {
+                typeFrom.options[typeFrom.options.length] = new Option(unit, unit);
+                typeTo.options[typeTo.options.length] = new Option(unit, unit);
+            });
+            typeTo.selectedIndex = 1;
+            doConversion();
+        }
+
+        function doConversion() {
+            if(!valFrom.value) { valTo.value = ''; return; }
+            const fromUnit = typeFrom.value;
+            const toUnit = typeTo.value;
+            const baseValue = parseFloat(valFrom.value) / units[currentCat][fromUnit];
+            valTo.value = (baseValue * units[currentCat][toUnit]).toFixed(4);
+        }
+
+        document.getElementById('cat-length').addEventListener('click', (e) => {
+            currentCat = 'length';
+            e.target.style.background = 'var(--accent-color)'; e.target.style.color = 'white';
+            document.getElementById('cat-weight').style.background = 'rgba(0,0,0,0.05)'; document.getElementById('cat-weight').style.color = 'var(--text-main)';
+            populateUnits();
+        });
+
+        document.getElementById('cat-weight').addEventListener('click', (e) => {
+            currentCat = 'weight';
+            e.target.style.background = 'var(--accent-color)'; e.target.style.color = 'white';
+            document.getElementById('cat-length').style.background = 'rgba(0,0,0,0.05)'; document.getElementById('cat-length').style.color = 'var(--text-main)';
+            populateUnits();
+        });
+
+        valFrom.addEventListener('input', doConversion);
+        typeFrom.addEventListener('change', doConversion);
+        typeTo.addEventListener('change', doConversion);
+
+        populateUnits();
+    </script>
+</body>
+</html>

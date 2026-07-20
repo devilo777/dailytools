@@ -1,0 +1,39 @@
+/* Tablet & Mobile Tweaks */
+@media (max-width: 768px) {
+    .navbar {
+        margin: 10px;
+        padding: 0.8rem 4%;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .tool-container {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    /* Grids wrapper adjustments */
+    div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    .upload-zone {
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    div[style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: 1fr !important;
+    }
+}

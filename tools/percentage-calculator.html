@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator - DailyTools Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar glass-card">
+        <a href="../index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+    </nav>
+
+    <div class="tool-container" style="max-width: 650px;">
+        <a href="../index.html" class="btn" style="background: rgba(0,0,0,0.05); color: var(--text-main) !important; border: 1px solid var(--glass-border); margin-bottom: 20px; padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div style="margin-bottom: 25px;">
+            <h2>Instant Percentage Calculator</h2>
+            <p class="text-muted">Type your numbers to calculate answers instantly without pressing any button.</p>
+        </div>
+
+        <!-- Easy Mode Block 1 -->
+        <div class="glass-card" style="padding: 20px; border: 2px solid var(--glass-border); margin-bottom: 20px;">
+            <h4 style="margin-bottom: 12px; color: var(--accent-color);"><i class="fas fa-percentage"></i> Basic Percentage</h4>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 1.05rem;">
+                <span>What is</span>
+                <input type="number" id="part" placeholder="e.g. 10" style="width: 90px; margin:0; padding:8px;">
+                <span>% of</span>
+                <input type="number" id="total" placeholder="e.g. 200" style="width: 110px; margin:0; padding:8px;">
+                <span>=</span>
+                <span style="font-weight: bold; color: var(--success); font-size: 1.2rem;" id="res1">--</span>
+            </div>
+        </div>
+
+        <!-- Easy Mode Block 2 -->
+        <div class="glass-card" style="padding: 20px; border: 2px solid var(--glass-border);">
+            <h4 style="margin-bottom: 12px; color: var(--accent-color);"><i class="fas fa-chart-line"></i> Growth / Discount Shift</h4>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 1.05rem;">
+                <span>From</span>
+                <input type="number" id="v1" placeholder="e.g. 100" style="width: 100px; margin:0; padding:8px;">
+                <span>To</span>
+                <input type="number" id="v2" placeholder="e.g. 150" style="width: 100px; margin:0; padding:8px;">
+                <span>=</span>
+                <span style="font-weight: bold; color: var(--success); font-size: 1.2rem;" id="res2">--</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script>
+        const part = document.getElementById('part');
+        const total = document.getElementById('total');
+        const v1 = document.getElementById('v1');
+        const v2 = document.getElementById('v2');
+
+        function calc1() {
+            if(part.value && total.value) {
+                document.getElementById('res1').innerText = ((parseFloat(part.value) / 100) * parseFloat(total.value)).toFixed(2);
+            } else { document.getElementById('res1').innerText = '--'; }
+        }
+        function calc2() {
+            if(v1.value && v2.value) {
+                let initial = parseFloat(v1.value);
+                let final = parseFloat(v2.value);
+                let change = ((final - initial) / initial) * 100;
+                document.getElementById('res2').innerText = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
+            } else { document.getElementById('res2').innerText = '--'; }
+        }
+
+        part.addEventListener('input', calc1); total.addEventListener('input', calc1);
+        v1.addEventListener('input', calc2); v2.addEventListener('input', calc2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/* Unique CSS for Deep Level Tool Utilities */
+.tool-grid-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Advanced Drag & Drop Target Layout */
+.upload-zone {
+    border: 2px dashed var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.upload-zone:hover {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+}
+
+.upload-zone i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+/* Input Fields Control Groups */
+.control-group {
+    margin-bottom: 20px;
+}
+
+.control-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+/* Styled Sliders & Toggles */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--glass-border);
+    border-radius: 10px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Output Dashboard Display Grids */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.dashboard-stat {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+}
+
+.dashboard-stat span {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-top: 5px;
+}

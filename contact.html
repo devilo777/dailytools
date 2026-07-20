@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - DailyTools Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar glass-card animate-fade-up">
+        <a href="index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container Grid -->
+    <div class="tool-container animate-fade-up" style="max-width: 600px; margin: 40px auto; padding: 35px;">
+        <h2 style="margin-bottom: 10px;"><i class="fas fa-paper-plane" style="color: var(--accent-color);"></i> Get In Touch</h2>
+        <p class="text-muted" style="margin-bottom: 25px; font-size: 0.95rem;">Have questions, feature proposals or found runtime errors? Send a direct feedback packet.</p>
+
+        <!-- Contact Submission Form Formats -->
+        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom: 8px; font-weight:500; font-size:0.9rem;">Full Name</label>
+                <input type="text" id="contactName" required class="glass-card" style="width: 100%; padding: 12px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); border-radius: 10px; outline: none;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display:block; margin-bottom: 8px; font-weight:500; font-size:0.9rem;">Email Address</label>
+                <input type="email" id="contactEmail" required class="glass-card" style="width: 100%; padding: 12px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); border-radius: 10px; outline: none;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="display:block; margin-bottom: 8px; font-weight:500; font-size:0.9rem;">Message Payload Context</label>
+                <textarea id="contactMessage" rows="5" required class="glass-card" placeholder="Write your context message body details here..." style="width: 100%; padding: 12px; border: 1px solid var(--glass-border); background: var(--glass-bg); color: var(--text-main); border-radius: 10px; outline: none; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; justify-content: center; padding: 14px; font-size: 1rem;">
+                <i class="fas fa-paper-plane"></i> Dispatch Message
+            </button>
+        </form>
+    </div>
+
+    <!-- Contact Script Processing Layer -->
+    <script>
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const msg = document.getElementById('contactMessage').value;
+
+            // Trigger Premium Feedback Loop integration
+            if(window.showToast) {
+                window.showToast(`Thank you, ${name}! Your feedback has been simulated.`);
+            } else {
+                alert(`Message received from ${name}!`);
+            }
+
+            // Reset Input Data fields
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+
+    <!-- Global Scripts linkages -->
+    <script src="js/theme.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/main.script.js"></script>
+</body>
+</html>

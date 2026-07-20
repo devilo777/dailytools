@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer - DailyTools Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar glass-card">
+        <a href="../index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i></button></li>
+        </ul>
+    </nav>
+
+    <div class="tool-container">
+        <a href="../index.html" class="btn" style="background: rgba(0,0,0,0.05); color: var(--text-main) !important; border: 1px solid var(--glass-border); margin-bottom: 20px; padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div style="margin-bottom: 25px;">
+            <h2>Image Resizer & Compressor</h2>
+            <p class="text-muted">Resize pixels and compress image size down to specific KBs safely.</p>
+        </div>
+
+        <!-- Drag & Drop upload container -->
+        <div class="upload-zone" id="resizeDropZone">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <h4>Click or Drag Image File Here</h4>
+            <p class="text-muted" style="font-size: 0.85rem; margin-top: 5px;">Supports PNG, JPEG, WEBP</p>
+            <input type="file" id="resizeInput" accept="image/*" style="display: none;">
+        </div>
+
+        <!-- NEW: Real-time Uploaded Image View Node -->
+        <div id="previewContainer" style="display: none; text-align: center; margin-bottom: 25px; padding: 15px; border-radius: 12px; background: rgba(0,0,0,0.02); border: 1px dashed var(--glass-border);">
+            <h5 style="margin-bottom: 10px; color: var(--text-muted);">Original Image Preview:</h5>
+            <img id="sourceImageDisplay" style="max-width: 100%; max-height: 250px; border-radius: 8px; box-shadow: var(--shadow);" alt="Source Preview">
+            <p id="originalMetaInfo" class="text-muted" style="font-size: 0.85rem; margin-top: 8px;"></p>
+        </div>
+
+        <!-- Configuration Controls Area -->
+        <div id="resizeControls" class="glass-card" style="display: none; padding: 20px; border: 2px solid var(--glass-border);">
+            <h4 style="margin-bottom: 15px;"><i class="fas fa-sliders-h"></i> Configuration Parameters</h4>
+            
+            <!-- Dimension Row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                <div class="control-group">
+                    <label>Width (Pixels)</label>
+                    <input type="number" id="resizeW">
+                </div>
+                <div class="control-group">
+                    <label>Height (Pixels)</label>
+                    <input type="number" id="resizeH">
+                </div>
+            </div>
+
+            <!-- NEW: Target KB Optimization Box -->
+            <div class="control-group" style="margin-bottom: 15px;">
+                <label>Target File Size Max (Optional - KB)</label>
+                <input type="number" id="targetKB" placeholder="e.g. 50 (Leave blank for generic maximum quality)">
+            </div>
+
+            <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="maintainRatio" checked style="width: auto; margin: 0; cursor: pointer;">
+                <label for="maintainRatio" style="cursor: pointer; font-size: 0.9rem; font-weight: 500;">Maintain Aspect Ratio</label>
+            </div>
+
+            <button id="downloadResized" class="btn" style="width: 100%; justify-content: center; padding: 14px;">
+                <i class="fas fa-download"></i> Process & Download Image
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/tools/image-resizer.js"></script>
+</body>
+</html>

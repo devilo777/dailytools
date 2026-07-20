@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator - DailyTools Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Fix: Standardizing calendar controls layout to match theme styling rules */
+        .premium-date-picker {
+            background: var(--card-bg, #ffffff);
+            border: 2px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .picker-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .picker-grid select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: var(--body-bg);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            cursor: pointer;
+            outline: none;
+            font-weight: 500;
+            appearance: auto !important; /* Forces standard dropdown arrows to remain fully interactive */
+        }
+        .picker-grid select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        .result-card-box {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            text-align: center;
+            margin-top: 25px;
+        }
+        .badge-card {
+            border-radius: 12px;
+            padding: 18px 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            border: 1px solid var(--glass-border);
+        }
+        .badge-card h2 {
+            font-size: 1.8rem;
+            margin: 0 0 4px 0;
+            font-weight: 700;
+        }
+        .badge-card span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar glass-card">
+        <a href="../index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+    </nav>
+
+    <div class="tool-container" style="max-width: 600px;">
+        <!-- Dashboard back route navigation links configuration -->
+        <a href="../index.html" class="btn" style="background: rgba(0,0,0,0.05); color: var(--text-main) !important; border: 1px solid var(--glass-border); margin-bottom: 20px; padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div style="margin-bottom: 25px;">
+            <h2>Premium Age Calculator</h2>
+            <p class="text-muted">Select your Date of Birth below using the clean dropdown menus to breakdown exact age instantly.</p>
+        </div>
+
+        <!-- FIX: Replaced buggy browser native input with styled click-safe custom calendar parameters -->
+        <div class="premium-date-picker">
+            <label style="font-weight: 600; font-size: 0.95rem; color: var(--text-main);"><i class="fas fa-calendar-alt" style="color: var(--accent-color); margin-right: 5px;"></i> Select Date of Birth (DOB)</label>
+            <div class="picker-grid">
+                <!-- Day Selector -->
+                <select id="dobDay" title="Select Day"></select>
+                <!-- Month Selector -->
+                <select id="dobMonth" title="Select Month">
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
+                <!-- Year Selector - Fixes the frozen click bug entirely -->
+                <select id="dobYear" title="Select Year"></select>
+            </div>
+        </div>
+
+        <button id="calcAgeBtn" class="btn" style="width: 100%; justify-content: center; padding: 14px; font-weight: bold; font-size: 1rem; border-radius: 10px;">
+            <i class="fas fa-birthday-cake"></i> Calculate My Age
+        </button>
+
+        <!-- Premium Output Matrix Node Grid -->
+        <div id="resultGrid" class="result-card-box">
+            <div class="badge-card" style="background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.3);">
+                <h2 id="resYears" style="color: #3b82f6;">0</h2>
+                <span style="color: #3b82f6;">Years</span>
+            </div>
+            <div class="badge-card" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3);">
+                <h2 id="resMonths" style="color: #10b981;">0</h2>
+                <span style="color: #10b981;">Months</span>
+            </div>
+            <div class="badge-card" style="background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.3);">
+                <h2 id="resDays" style="color: #f59e0b;">0</h2>
+                <span style="color: #f59e0b;">Days</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/toast.js"></script>
+    <script>
+        // Setup values dynamically inside the dropdown selectors on window mount initialization
+        const daySelect = document.getElementById('dobDay');
+        const yearSelect = document.getElementById('dobYear');
+
+        // Populate days 1-31
+        for (let d = 1; d <= 31; d++) {
+            daySelect.options[daySelect.options.length] = new Option(d, d);
+        }
+
+        // Populate years dropdown smoothly from current year back down to past 120 years
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear; y >= currentYear - 120; y--) {
+            yearSelect.options[yearSelect.options.length] = new Option(y, y);
+        }
+
+        // Main lifecycle compute calculation process trigger
+        document.getElementById('calcAgeBtn').addEventListener('click', () => {
+            const selDay = parseInt(daySelect.value);
+            const selMonth = parseInt(document.getElementById('dobMonth').value);
+            const selYear = parseInt(yearSelect.value);
+            
+            const dob = new Date(selYear, selMonth, selDay);
+            const today = new Date();
+
+            // Simple fail-safe condition check validation
+            if (dob > today) {
+                if(window.showToast) window.showToast("Future dates cannot be evaluated!");
+                return;
+            }
+            
+            let years = today.getFullYear() - dob.getFullYear();
+            let months = today.getMonth() - dob.getMonth();
+            let days = today.getDate() - dob.getDate();
+            
+            if (days < 0) {
+                months--;
+                // Capture preceding month boundary values safely 
+                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            // Push values directly to viewport blocks arrays
+            document.getElementById('resYears').innerText = years;
+            document.getElementById('resMonths').innerText = months;
+            document.getElementById('resDays').innerText = days;
+            document.getElementById('resultGrid').style.display = 'grid';
+
+            if(window.showToast) window.showToast("Age computed smoothly!");
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* ==========================================================================
+   DAILYTOOLS HUB - CORE GLOBAL GLASSMORPHISM UI VARIABLE AND PALETTE SHEET
+   ========================================================================== */
+
+:root {
+    /* Light Mode Theme Spectrum Default */
+    --body-bg: #f1f5f9;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(15, 23, 42, 0.12);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --accent-color: #3b82f6;
+    --success: #10b981;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
+    --input-bg: #ffffff;
+    --input-text: #0f172a;
+    --input-border: #cbd5e1;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Core Parameters Mapping */
+    --body-bg: #0b0f19;
+    --glass-bg: rgba(15, 23, 42, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-color: #60a5fa;
+    --success: #34d399;
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    --input-bg: #1e293b;
+    --input-text: #f8fafc;
+    --input-border: #334155;
+}
+
+/* Base Body Resets Structure */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background: var(--body-bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+    padding-bottom: 40px;
+}
+
+/* Glassmorphic Core Container Layer */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Navbar System */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    width: 95%;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--accent-color);
+}
+
+/* Unified Global Tool Wrapper Block */
+.tool-container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* CRITICAL FIX: Universal Form Fields Configuration */
+input[type="text"], 
+input[type="number"], 
+input[type="email"], 
+input[type="password"], 
+input[type="date"], 
+textarea, 
+select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border: 2px solid var(--input-border) !important;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+    margin-top: 5px;
+}
+
+/* Dropdown Options List Visibility Fix */
+select option {
+    background: var(--input-bg) !important;
+    color: var(--input-text) !important;
+}
+
+/* Text Input Focus State Tracking Layer */
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* CRITICAL FIX: Placeholder Contrast Injection Override */
+::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.7 !important;
+}
+
+/* Standardized Button Configurations Structure */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent-color);
+    color: #ffffff !important; /* Always white text for proper button contrast */
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* CRITICAL FIX: Dynamic Popups, Alerts & Modals Text Color Engine */
+#toastContainer, .toast, .popup, .modal, .download-popup-context {
+    color: var(--text-main) !important;
+}
+
+/* Custom Alert / Confirmation Popup Buttons Styles Overlap */
+.popup-confirm-btn, .modal-yes-btn {
+    background: var(--success) !important;
+    color: #ffffff !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+
+/* Secondary System Helpers Elements */
+.text-muted {
+    color: var(--text-muted);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    cursor: pointer;
+}

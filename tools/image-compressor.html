@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor - DailyTools Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar glass-card">
+        <a href="../index.html" class="logo"><i class="fas fa-cubes"></i> DailyTools Hub</a>
+    </nav>
+
+    <div class="tool-container">
+        <a href="../index.html" class="btn" style="background: rgba(0,0,0,0.05); color: var(--text-main) !important; border: 1px solid var(--glass-border); margin-bottom: 20px; padding: 8px 16px; font-size: 0.9rem;">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <div style="margin-bottom: 25px;">
+            <h2>Image Compressor</h2>
+            <p class="text-muted">Reduce photo size in KBs/MBs smoothly without altering pixel width or height.</p>
+        </div>
+
+        <!-- Premium Upload Box -->
+        <div class="upload-zone" id="compressDropZone">
+            <i class="fas fa-file-image"></i>
+            <h4>Click or Drag Photo Here to Compress</h4>
+            <p class="text-muted" style="font-size: 0.85rem; margin-top: 5px;">Supports JPEG, PNG, WEBP</p>
+            <input type="file" id="compressInput" accept="image/*" style="display: none;">
+        </div>
+
+        <!-- Live Metrics Grid Controls -->
+        <div id="compressControls" class="glass-card" style="display: none; padding: 20px; border: 2px solid var(--glass-border);">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; text-align: center;">
+                <div style="padding: 10px; background: rgba(0,0,0,0.02); border-radius: 8px; border: 1px solid var(--glass-border);">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Original Size</span>
+                    <h4 id="originalSize" style="margin-top: 5px;">0 KB</h4>
+                </div>
+                <div style="padding: 10px; background: rgba(0,0,0,0.02); border-radius: 8px; border: 1px solid var(--glass-border);">
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Compressed Size</span>
+                    <h4 id="compressedSize" style="margin-top: 5px;">--</h4>
+                </div>
+            </div>
+
+            <div class="control-group" style="margin-bottom: 20px;">
+                <label style="display: flex; justify-content: space-between;">
+                    <span>Compression Quality</span>
+                    <span id="qualityVal" style="color: var(--accent-color); font-weight: bold;">70%</span>
+                </label>
+                <input type="range" id="compressQuality" min="10" max="100" value="70">
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <button id="startCompressionBtn" class="btn" style="flex: 1; justify-content: center;">
+                    <i class="fas fa-cogs"></i> Apply Compression
+                </button>
+                <button id="downloadCompressedBtn" class="btn" style="flex: 1; justify-content: center; background: var(--success); display: none;">
+                    <i class="fas fa-download"></i> Download File
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/toast.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/tools/image-compressor.js"></script>
+</body>
+</html>
